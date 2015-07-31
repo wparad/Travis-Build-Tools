@@ -1,6 +1,8 @@
 # Travis-Build-Tools
 Creates a Ruby Gem travis-build-tools.
 
+[![Build Status](https://travis-ci.org/wparad/Travis-Build-Tools.svg?branch=master)](https://travis-ci.org/wparad/Travis-Build-Tools)
+
 ### Usage
 Version is created by joining the the number of the release branch number with the build number and then a zero.  `(release.number).(build number).0`.
   
