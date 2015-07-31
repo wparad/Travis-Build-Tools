@@ -26,3 +26,7 @@ publish_git_tag :publish_git_tag do |t, args|
   t.tag_name = BUILD_VERSION
   t.service_user = ENV['GIT_TAG_PUSHER']
 end
+
+task :after_success do
+  puts %x[gem owner travis-build-tools -a wparad@gmail.com]
+end

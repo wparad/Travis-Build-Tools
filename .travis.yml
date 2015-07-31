@@ -22,6 +22,12 @@ deploy:
     on:
       tags: false
       all_branches: true
+  - provider: script
+    script: after_success.sh
+    skip_cleanup: true
+    on:
+      tags: false
+      all_branches: true
 branches:
   only:
   - master
