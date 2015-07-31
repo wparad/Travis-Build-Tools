@@ -1,6 +1,8 @@
 # Travis-Build-Tools
 Creates a Ruby Gem travis-build-tools.
 
+[![Gem Version](https://badge.fury.io/rb/travis-build-tools.svg)](http://badge.fury.io/rb/travis-build-tools)
+
 [![Build Status](https://travis-ci.org/wparad/Travis-Build-Tools.svg?branch=master)](https://travis-ci.org/wparad/Travis-Build-Tools)
 
 ### Usage
