@@ -32,13 +32,17 @@ end
 VERSION = TravisBuildTools::Build::VERSION
 task :create_git_tag do
   if ENV['TRAVIS']
+    raise 'Environment variable GIT_TAG_PUSHER mist be set.' if !ENV['GIT_TAG_PUSHER']
+
     #Setup up deploy
     puts %x[git config --global user.email "builds@travis-ci.com"]
     puts %x[git config --global user.name "Travis CI"]
     tag = VERSION.to_s
     puts %x[git tag #{tag} -a -m "Generated tag from TravisCI for build #{ENV['TRAVIS_BUILD_NUMBER']}"]
     puts "Pushing Git tag #{tag}."
-    %x[git push --quiet https://#{ENV['GIT_TAG_PUSHER']}@#{GIT_REPOSITORY} #{tag} > /dev/null 2>&1]
+    
+    git_repository = %x[git config --get remote.origin.url].split('://')[1]
+    %x[git push --quiet https://#{ENV['GIT_TAG_PUSHER']}@#{git_repository} #{tag} > /dev/null 2>&1]
   end
 end
 
