@@ -6,7 +6,7 @@ deploy:
   skip_cleanup: true
   provider: rubygems
   file_glob: true
-  file: output/*.*
+  file: pkg/*.gem
   on:
     tags: false
     all_branches: true
