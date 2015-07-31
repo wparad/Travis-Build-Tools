@@ -7,4 +7,3 @@ LIB = 'lib'
 NAME = 'travis-build-tools'
 
 BUILD_VERSION = TravisBuildTools::Build::VERSION.to_s
-File.write('version.properties', "VERSION=#{BUILD_VERSION}")

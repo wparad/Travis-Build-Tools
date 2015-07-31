@@ -8,6 +8,9 @@ require 'rubygems/package_task'
 require 'rspec/core/rake_task'
 require 'tmpdir'
 require_relative 'helpers/constants'
+require_relative 'lib/travis-build-tools/dsl'
+
+include TravisBuildTools::DSL
 
 #Environment variables: http://docs.travis-ci.com/user/environment-variables/
 
@@ -19,7 +22,7 @@ require_relative 'helpers/constants'
   desc "Install new version of #{NAME}"
   task :redeploy => [:repackage, :deploy]
 
-  task :default => [:repackage, :create_git_tag]
+  task :default => [:spec, :publish_git_tag]
 
   task :repackage => [:spec]
 #### TASKS ####
@@ -29,20 +32,10 @@ Gem::PackageTask.new(Gem::Specification.load(Dir['*.gemspec'].first)) do |pkg|
   #pkg.need_tar = true
 end
 
-task :create_git_tag do
-  if ENV['TRAVIS']
-    raise 'Environment variable GIT_TAG_PUSHER mist be set.' if !ENV['GIT_TAG_PUSHER']
-
-    #Setup up deploy
-    puts %x[git config --global user.email "builds@travis-ci.com"]
-    puts %x[git config --global user.name "Travis CI"]
-    tag = TravisBuildTools::Build::VERSION.to_s
-    puts %x[git tag #{tag} -a -m "Generated tag from TravisCI for build #{ENV['TRAVIS_BUILD_NUMBER']}"]
-    puts "Pushing Git tag #{tag}."
-    
-    git_repository = %x[git config --get remote.origin.url].split('://')[1]
-    %x[git push --quiet https://#{ENV['GIT_TAG_PUSHER']}@#{git_repository} #{tag} > /dev/null 2>&1]
-  end
+publish_git_tag :publish_git_tag do |t, args|
+  t.git_repository = %x[git config --get remote.origin.url].split('://')[1]
+  t.tag_name = BUILD_VERSION
+  t.service_user = ENV['GIT_TAG_PUSHER']
 end
 
 task :uninstall do
