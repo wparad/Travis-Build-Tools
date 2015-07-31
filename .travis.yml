@@ -3,7 +3,7 @@ rvm:
   - 2.1.6
 script:
 - rake --trace
-- ls -lR
+- rake after_build --trace
 deploy:
   - provider: rubygems
     gem: travis-build-tools

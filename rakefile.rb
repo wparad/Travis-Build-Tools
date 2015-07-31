@@ -21,12 +21,17 @@ include TravisBuildTools::DSL
 
   task :default => [:spec, :publish_git_tag]
 
+  task :after_build => [:display_repository]
+
 publish_git_tag :publish_git_tag do |t, args|
   t.git_repository = %x[git config --get remote.origin.url].split('://')[1]
   t.tag_name = BUILD_VERSION
   t.service_user = ENV['GIT_TAG_PUSHER']
 end
 
+task :display_repository do
+  puts Dir.glob(File.join(PWD, '**', '*'), File::FNM_DOTMATCH).select{|f| !f.match(/\/(\.git|\.vendor|bundler)\//)}
+end
 task :set_owner do
   system("gem owner travis-build-tools -a wparad@gmail.com")
 end
