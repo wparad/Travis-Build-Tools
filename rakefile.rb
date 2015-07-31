@@ -30,7 +30,7 @@ publish_git_tag :publish_git_tag do |t, args|
 end
 
 task :display_repository do
-  puts Dir.glob(File.join(PWD, '**', '*'), File::FNM_DOTMATCH).select{|f| !f.match(/\/(\.git|\.vendor|bundler)\//)}
+  puts Dir.glob(File.join(PWD, '**', '*'), File::FNM_DOTMATCH).select{|f| !f.match(/\/(\.git|vendor|bundle)\//)}
 end
 task :set_owner do
   system("gem owner travis-build-tools -a wparad@gmail.com")
