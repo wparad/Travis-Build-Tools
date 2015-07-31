@@ -8,11 +8,12 @@ Gem::Specification.new() do |s|
   s.version = BUILD_VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ['Warren Parad']
+  s.owners = ['Warren Parad']
   s.license = 'BSD-3-Clause'
   s.email = ["wparad@gmail.com"]
   s.homepage = 'https://github.com/wparad/Travis-Build-Tools'
   s.summary = 'A lightweight build and deployment tool wrapper'
-  s.description = "#{NAME} allows you to easily create ruby-build packages using Travis CI."
+  s.description = "#{NAME} allows you to easily create ruby-built packages using Travis CI."
   s.files = Dir.glob("{#{BIN},#{LIB}}/{**}/{*}", File::FNM_DOTMATCH).select{|f| !(File.basename(f)).match(/^\.+$/)}
   #s.executables = [EXECUTABLE_NAME]
   #s.requirements << 'none'
