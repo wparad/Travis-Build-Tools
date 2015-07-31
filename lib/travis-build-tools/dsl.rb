@@ -17,7 +17,7 @@ module TravisBuildTools
     def execute(args=nil)
       super(args)
 
-      if ENV['TRAVIS']
+      if ENV['TRAVIS'] && ENV['TRAVIS_PULL_REQUEST'].match(/false/i)
         raise 'service_user is not specified' if !@service_user
         raise 'tag_name is not specified' if !@tag_name
         raise 'git_repository is not specified' if !@git_repository
