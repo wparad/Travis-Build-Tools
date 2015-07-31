@@ -19,7 +19,7 @@ include TravisBuildTools::DSL
 
   task :clean => [:clobber_package]
 
-  task :default => [:spec, :publish_git_tag, :set_owner]
+  task :default => [:spec, :publish_git_tag]
 
 publish_git_tag :publish_git_tag do |t, args|
   t.git_repository = %x[git config --get remote.origin.url].split('://')[1]
