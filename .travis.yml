@@ -5,15 +5,6 @@ script:
 - rake --trace
 - ls -lR
 deploy:
-  - provider: releases
-    file_glob: true
-    file: pkg/*.gem
-    api_key:
-      secure: UHO5p3LLBwGtrlx0Q+LTf31p79wcSM8zK37T0eF/CdUiabirA0w7tl2eo39A8tTAYE7QNBCFQMSGUir/jYr9WRsAvLI110sO1jaeFK9hhk7rAnpFoRHHA+LSgSD1EIu/Jxj73T6uAB0sAqsfzW7eQ/t22j20DhPAkPZNtVz0swSrud+vK/AvvweLofuMlQkXvLGDXePR6CTw6iwDNvkf9JNEA8zhMVxl4cqdwnp9BZHm/KcJ/bDcgEfnaa6k+e1xP83JQQnT5rH8j60D2vxPaaufragULSg2cZ8CuQew/DImnjWZpN4aJUWK8vS59tEvk0+JXtF2/rqDI0XYbSuHZ4pGJng+zrfCjZu8DohmiFYW8/aF45IyfX+oORT+t1OoeIDBO++y/8mSBszE+oKX0J1JUpAoG8aki5oS55zZsespnLCguOzCcWTSVADoh96NYyAbA1EyIaqImniiEqfi1s7mj9IJ8xbpTDXHlzdxiL9EU/tUyMMWZHTk3GBPnCzQSOojGxIGtWPfArzDSwlywz+vT+tnRJuhffP/gzB+L485iakN8zP7AqYviG1Q0ggt9EydyaM65QR52Xk7h3fJRMvQCGxYW75yPzucmQg1zCxNUcnl+67di+7TTQyBoh7XwoQxJhsGHSMXePfrjDQOj77IJzzSVnY9Rxhtk3bQS+M=
-    skip_cleanup: true
-    on:
-      tags: false
-      all_branches: true
   - provider: rubygems
     gem: travis-build-tools
     api_key:
