@@ -19,10 +19,16 @@ include TravisBuildTools::DSL
 
   task :clean => [:clobber_package]
 
-  task :default => [:spec, :publish_git_tag]
+  task :default => [:spec]
+
+  task :after_success => [:publish_git_tag]
 
 publish_git_tag :publish_git_tag do |t, args|
   t.git_repository = %x[git config --get remote.origin.url].split('://')[1]
   t.tag_name = BUILD_VERSION
   t.service_user = ENV['GIT_TAG_PUSHER']
+end
+
+task :after_success do
+  puts %x[gem owner travis-build-tools -a wparad@gmail.com]
 end

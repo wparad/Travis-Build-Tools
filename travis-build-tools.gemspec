@@ -8,7 +8,6 @@ Gem::Specification.new() do |s|
   s.version = BUILD_VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ['Warren Parad']
-  s.owners = ['Warren Parad']
   s.license = 'BSD-3-Clause'
   s.email = ["wparad@gmail.com"]
   s.homepage = 'https://github.com/wparad/Travis-Build-Tools'
