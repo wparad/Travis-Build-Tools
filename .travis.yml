@@ -5,14 +5,23 @@ script:
 - rake --trace
 - ls -lR
 deploy:
-  skip_cleanup: true
-  provider: rubygems
-  on:
-    tags: false
-    all_branches: true
-  api_key:
-    secure: o14uJeaBaV9/piH2SVUn9pF8uysYSecUMje5JL0qVFgOxK86LMfc+Lkr6+6UJZMStrCyQ75a9MMv0SujhTi9An4N/PVW0SztJLyRY5xCVZe6rkG9DeaBJC3yE7JDz8d4ppe0uBZzTaYs6MkDLNVZq9CNWjo4xR4dSLnQrix4ORHKtKpdKQAzcFdX2NlsuZt4d+EH2WjYraJUeOSDggSN+6k+XRM4rwtT6cghZjIxrV1ZpF/91OBW+EUPQ6WZi6ycjJOHO9NNzpHdBdLcGL0VIMACQ3nPGYTsUe2v3D6BfnItdNuG29d+C/Jltg1zeRfJdCIcrtjcK/XxClCbyGw67viyWQJxjrs4kPyl5emBTLoiMHWlhHLFjes2qGk2SDWw9rbXdbsp6+MoqrmMeQTmSQdBsjsw61obhG0Hix70xBiMv23lZCJMNZHsX05TFSyjcfkcBl6f06KPV4BTtsCKbXERdfDUT+7aNQtT70q7uBN25pBuaIAz5v/UC2xYJx1OA+Z/5P6dVcUhevTYF4WjTIOSRfh7BHqku+BdItE8J/3kYbfSG+nsrEQmWjFtc6sm6aADRKKrGRrHMG5aiM1/OsCqefDnlu3vnA+h/0rmZc3BvP9mAcCI4BPzllhOWDyDnd/KbX7N5qxIeoNZVFysOoyMwZeL4496eoxe46cLmKo=
-  gem: travis-build-tools
+  - provider: releases
+    file_glob: true
+    file: pkg/*.gem
+    api_key:
+      secure: UHO5p3LLBwGtrlx0Q+LTf31p79wcSM8zK37T0eF/CdUiabirA0w7tl2eo39A8tTAYE7QNBCFQMSGUir/jYr9WRsAvLI110sO1jaeFK9hhk7rAnpFoRHHA+LSgSD1EIu/Jxj73T6uAB0sAqsfzW7eQ/t22j20DhPAkPZNtVz0swSrud+vK/AvvweLofuMlQkXvLGDXePR6CTw6iwDNvkf9JNEA8zhMVxl4cqdwnp9BZHm/KcJ/bDcgEfnaa6k+e1xP83JQQnT5rH8j60D2vxPaaufragULSg2cZ8CuQew/DImnjWZpN4aJUWK8vS59tEvk0+JXtF2/rqDI0XYbSuHZ4pGJng+zrfCjZu8DohmiFYW8/aF45IyfX+oORT+t1OoeIDBO++y/8mSBszE+oKX0J1JUpAoG8aki5oS55zZsespnLCguOzCcWTSVADoh96NYyAbA1EyIaqImniiEqfi1s7mj9IJ8xbpTDXHlzdxiL9EU/tUyMMWZHTk3GBPnCzQSOojGxIGtWPfArzDSwlywz+vT+tnRJuhffP/gzB+L485iakN8zP7AqYviG1Q0ggt9EydyaM65QR52Xk7h3fJRMvQCGxYW75yPzucmQg1zCxNUcnl+67di+7TTQyBoh7XwoQxJhsGHSMXePfrjDQOj77IJzzSVnY9Rxhtk3bQS+M=
+    skip_cleanup: true
+    on:
+      tags: false
+      all_branches: true
+  - provider: rubygems
+    gem: travis-build-tools
+    api_key:
+      secure: o14uJeaBaV9/piH2SVUn9pF8uysYSecUMje5JL0qVFgOxK86LMfc+Lkr6+6UJZMStrCyQ75a9MMv0SujhTi9An4N/PVW0SztJLyRY5xCVZe6rkG9DeaBJC3yE7JDz8d4ppe0uBZzTaYs6MkDLNVZq9CNWjo4xR4dSLnQrix4ORHKtKpdKQAzcFdX2NlsuZt4d+EH2WjYraJUeOSDggSN+6k+XRM4rwtT6cghZjIxrV1ZpF/91OBW+EUPQ6WZi6ycjJOHO9NNzpHdBdLcGL0VIMACQ3nPGYTsUe2v3D6BfnItdNuG29d+C/Jltg1zeRfJdCIcrtjcK/XxClCbyGw67viyWQJxjrs4kPyl5emBTLoiMHWlhHLFjes2qGk2SDWw9rbXdbsp6+MoqrmMeQTmSQdBsjsw61obhG0Hix70xBiMv23lZCJMNZHsX05TFSyjcfkcBl6f06KPV4BTtsCKbXERdfDUT+7aNQtT70q7uBN25pBuaIAz5v/UC2xYJx1OA+Z/5P6dVcUhevTYF4WjTIOSRfh7BHqku+BdItE8J/3kYbfSG+nsrEQmWjFtc6sm6aADRKKrGRrHMG5aiM1/OsCqefDnlu3vnA+h/0rmZc3BvP9mAcCI4BPzllhOWDyDnd/KbX7N5qxIeoNZVFysOoyMwZeL4496eoxe46cLmKo=
+    skip_cleanup: true
+    on:
+      tags: false
+      all_branches: true
 branches:
   only:
   - master
