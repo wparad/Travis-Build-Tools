@@ -9,7 +9,7 @@ module TravisBuildTools
       else ENV['TRAVIS_BRANCH'].match(/^release[\/-](\d+\.\d+)$/i)[1]
     end
     now = Time.now.to_a
-    VERSION = Gem::Version.new("#{RELEASE_VERSION}.#{ENV['TRAVIS_BUILD_NUMBER'] || '0'}")
+    VERSION = Gem::Version.new("#{RELEASE_VERSION}.#{ENV['TRAVIS_BUILD_NUMBER'] || '0'}.0")
     PULL_REQUEST = ENV['TRAVIS_PULL_REQUEST'].match(/false/i) ? nil : ENV['TRAVIS_PULL_REQUEST']
   end
 end
