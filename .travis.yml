@@ -5,11 +5,11 @@ script:
 - rake --trace
 - rake after_build --trace
 deploy:
-  - provider: rubygems
-    gem: travis-build-tools
-    api_key:
-      secure: o14uJeaBaV9/piH2SVUn9pF8uysYSecUMje5JL0qVFgOxK86LMfc+Lkr6+6UJZMStrCyQ75a9MMv0SujhTi9An4N/PVW0SztJLyRY5xCVZe6rkG9DeaBJC3yE7JDz8d4ppe0uBZzTaYs6MkDLNVZq9CNWjo4xR4dSLnQrix4ORHKtKpdKQAzcFdX2NlsuZt4d+EH2WjYraJUeOSDggSN+6k+XRM4rwtT6cghZjIxrV1ZpF/91OBW+EUPQ6WZi6ycjJOHO9NNzpHdBdLcGL0VIMACQ3nPGYTsUe2v3D6BfnItdNuG29d+C/Jltg1zeRfJdCIcrtjcK/XxClCbyGw67viyWQJxjrs4kPyl5emBTLoiMHWlhHLFjes2qGk2SDWw9rbXdbsp6+MoqrmMeQTmSQdBsjsw61obhG0Hix70xBiMv23lZCJMNZHsX05TFSyjcfkcBl6f06KPV4BTtsCKbXERdfDUT+7aNQtT70q7uBN25pBuaIAz5v/UC2xYJx1OA+Z/5P6dVcUhevTYF4WjTIOSRfh7BHqku+BdItE8J/3kYbfSG+nsrEQmWjFtc6sm6aADRKKrGRrHMG5aiM1/OsCqefDnlu3vnA+h/0rmZc3BvP9mAcCI4BPzllhOWDyDnd/KbX7N5qxIeoNZVFysOoyMwZeL4496eoxe46cLmKo=
-    skip_cleanup: true
+  provider: rubygems
+  gem: travis-build-tools
+  api_key:
+    secure: o14uJeaBaV9/piH2SVUn9pF8uysYSecUMje5JL0qVFgOxK86LMfc+Lkr6+6UJZMStrCyQ75a9MMv0SujhTi9An4N/PVW0SztJLyRY5xCVZe6rkG9DeaBJC3yE7JDz8d4ppe0uBZzTaYs6MkDLNVZq9CNWjo4xR4dSLnQrix4ORHKtKpdKQAzcFdX2NlsuZt4d+EH2WjYraJUeOSDggSN+6k+XRM4rwtT6cghZjIxrV1ZpF/91OBW+EUPQ6WZi6ycjJOHO9NNzpHdBdLcGL0VIMACQ3nPGYTsUe2v3D6BfnItdNuG29d+C/Jltg1zeRfJdCIcrtjcK/XxClCbyGw67viyWQJxjrs4kPyl5emBTLoiMHWlhHLFjes2qGk2SDWw9rbXdbsp6+MoqrmMeQTmSQdBsjsw61obhG0Hix70xBiMv23lZCJMNZHsX05TFSyjcfkcBl6f06KPV4BTtsCKbXERdfDUT+7aNQtT70q7uBN25pBuaIAz5v/UC2xYJx1OA+Z/5P6dVcUhevTYF4WjTIOSRfh7BHqku+BdItE8J/3kYbfSG+nsrEQmWjFtc6sm6aADRKKrGRrHMG5aiM1/OsCqefDnlu3vnA+h/0rmZc3BvP9mAcCI4BPzllhOWDyDnd/KbX7N5qxIeoNZVFysOoyMwZeL4496eoxe46cLmKo=
+  skip_cleanup: true
   on:
     condition: $TRAVIS_BRANCH =~ ^release
 branches:
