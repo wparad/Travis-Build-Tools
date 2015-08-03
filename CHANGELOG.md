@@ -1,4 +1,5 @@
 # Change log
 This is the changelog for [Travis Build Tools](readme.md).
 
-## 1.0 ##
+## 2.0 ##
+Coverted rake tasks to library functions.
