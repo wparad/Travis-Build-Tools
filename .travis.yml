@@ -2,8 +2,8 @@ language: ruby
 rvm:
   - 2.1.6
 script:
-- rake --trace
-- rake after_build --trace
+- bundle exec rake --trace
+- bundle exec rake after_build --trace
 deploy:
   provider: rubygems
   gem: travis-build-tools
