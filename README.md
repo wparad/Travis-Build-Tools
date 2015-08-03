@@ -1,4 +1,4 @@
-# Travis-Build-Tools
+# Travis Build Tools
 Creates a Ruby Gem travis-build-tools.
 
 [![Gem Version](https://badge.fury.io/rb/travis-build-tools.svg)](http://badge.fury.io/rb/travis-build-tools)
