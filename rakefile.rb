@@ -8,9 +8,7 @@ require 'rubygems/package_task'
 require 'rspec/core/rake_task'
 require 'tmpdir'
 require_relative 'helpers/constants'
-require_relative 'lib/travis-build-tools/dsl'
-
-include TravisBuildTools::DSL
+require_relative 'lib/travis-build-tools/builder'
 
 #Environment variables: http://docs.travis-ci.com/user/environment-variables/
 
@@ -23,10 +21,10 @@ include TravisBuildTools::DSL
 
   task :after_build => [:display_repository]
 
-publish_git_tag :publish_git_tag do |t, args|
-  t.git_repository = %x[git config --get remote.origin.url].split('://')[1]
-  t.tag_name = BUILD_VERSION
-  t.service_user = ENV['GIT_TAG_PUSHER']
+task :publish_git_tag do
+  builder = TravisBuildTools::Builder.new(ENV['GIT_TAG_PUSHER'])
+  tag_name = BUILD_VERSION
+  builder.publish_git_tag(tag_name)
 end
 
 task :display_repository do
