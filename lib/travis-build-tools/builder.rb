@@ -3,10 +3,13 @@ module TravisBuildTools
     def initialize(service_user, git_repository = nil)
       @service_user = service_user
       origin_url = %x[git config --get remote.origin.url]
-      @git_repository = git_repository || origin_url.split('://')[1] || origin_url.split('@')[1]
-
-      raise 'git_repository is not specified' if !@git_repository
-      raise 'service_user is not specified' if !@service_user
+      git_repository ||= origin_url.split('://')[1] || origin_url.split('@')[1]
+      raise 'git_repository is not specified' if !git_repository
+      raise 'service_user is not specified' if !service_user
+      
+      #Set the service remote
+      puts %x[git remote add service https://#{service_user}@#{git_repository}]
+      puts %x[git fetch service]
     end
 
     def publish_git_tag(tag_name)
@@ -19,7 +22,7 @@ module TravisBuildTools
         puts %x[git tag #{tag_name} -a -m "Generated tag from TravisCI."]
         puts "Pushing Git tag #{tag_name}."
 
-        %x[git push --tags --quiet https://#{@service_user}@#{@git_repository} #{tag_name} > /dev/null 2>&1]
+        %x[git push --tags --quiet service #{tag_name} > /dev/null 2>&1]
       end
     end
     
@@ -40,10 +43,10 @@ module TravisBuildTools
         next_branch_to_merge = (sorted_branches.drop_while{|b| b <= current_release_version}.map{|v| release_branch_name + v.to_s} + ['master']).first
 
         #create a merge commit for that branch
-        puts %x[git merge --no-ff origin/#{next_branch_to_merge}]
+        puts %x[git merge --no-ff service/#{next_branch_to_merge} -m"Merge remote-tracking branch '#{ENV['TRAVIS_BRANCH']}'"]
         puts "Merging to downstream branch: #{next_branch_to_merge}"
         #push origin for that branch using the service user
-        %x[git push --quiet https://#{@service_user}@#{@git_repository} HEAD:#{next_branch_to_merge} > /dev/null 2>&1]
+        %x[git push --quiet service HEAD:#{next_branch_to_merge} > /dev/null 2>&1]
       end
     end
   end
