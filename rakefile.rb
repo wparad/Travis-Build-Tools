@@ -21,6 +21,11 @@ require_relative 'lib/travis-build-tools/builder'
 
   task :after_build => [:display_repository, :publish_git_tag, :merge_downstream]
 
+  task :redeploy => [:uninstall, :repackage, :deploy]
+
+Gem::PackageTask.new(Gem::Specification.load(Dir['*.gemspec'].first)) do |pkg|
+end
+
 BUILDER = TravisBuildTools::Builder.new(ENV['GIT_TAG_PUSHER'] || ENV['USER'])
 task :publish_git_tag do
   BUILDER.publish_git_tag(BUILD_VERSION)

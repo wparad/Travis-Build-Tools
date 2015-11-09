@@ -31,4 +31,13 @@ Automatic downstream branch merging
       branch_name_matcher = 'release/'
       master_branch_name = 'master'
       builder.merge_downstream(branch_name_matcher, master_branch_name)
-    end  
+    end
+
+Update .travis.yml keys
+
+* `apt-get install ruby-dev`
+* `gem install travis`
+* Setup [Travis-CI](https://travis-ci.org/profile/) build on the repository.
+* `travis encrypt GIT_TAG_PUSHER=git_api_key --add env.global`
+* `travis encrypt deployment_key --add deploy.api_key`
+	
