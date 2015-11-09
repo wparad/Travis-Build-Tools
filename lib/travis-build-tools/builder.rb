@@ -8,8 +8,10 @@ module TravisBuildTools
       raise 'service_user is not specified' if !service_user
       
       #Set the service remote
-      puts %x[git remote add service https://#{service_user}@#{git_repository}]
-      puts %x[git fetch service]
+      if system('git remote show service > /dev/null 2>&1 || echo 1')
+        system("git remote add service https://#{service_user}@#{git_repository} > /dev/null 2>&1 || exit 0")
+      end
+      system('git fetch service > /dev/null 2>&1 || exit 0')
     end
 
     def publish_git_tag(tag_name)
